@@ -31,13 +31,13 @@ INSTALLED_APPS = [
 
     # DRF (Django REST framework) - это библиотека, которая работает со стандартными моделями Django для создания
     # API-сервера для проекта.
-    # 'rest_framework',
+    'rest_framework',
 
     # Документация
     # 'drf_yasg',
 
     # Приложения проекта
-    # 'users',
+    'users',
 ]
 
 MIDDLEWARE = [
