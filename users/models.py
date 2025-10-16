@@ -18,8 +18,6 @@ class AppUser(AbstractUser):
     REQUIRED_FIELDS = ["first_name", "last_name"]
 
     # Указываю кастомный менеджер для пользователя без поля username.
-    # Указываю "type: ignore" чтоб убрать ошибку типизации mypy, так как пока не разобрался как правильно
-    # работать с типизацией TypeVar.
     objects = AppUserManager()  # type: ignore
 
     def __str__(self):
