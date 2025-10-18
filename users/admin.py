@@ -6,7 +6,7 @@ from users.models import AppUser
 
 @admin.register(AppUser)
 class AppUserAdmin(UserAdmin):
-    """Настройка отображения модели Пользователя в админке."""
+    """Настройка отображения модели AppUser в админке."""
     list_display = (
         "id", "email", "first_name", "last_name", "is_staff", "is_superuser", "is_active"
     )

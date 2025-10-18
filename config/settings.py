@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     # Приложения проекта
     'users',
+    'products',
 ]
 
 MIDDLEWARE = [
