@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
 
 from network.models import NetworkNode
 from network.serializers import NetworkNodeSerializer
@@ -11,3 +12,6 @@ class NetworkNodeViewSet(viewsets.ModelViewSet):
     permission_classes = [IsActiveEmployee]
     queryset = NetworkNode.objects.all()
     serializer_class = NetworkNodeSerializer
+
+    filter_backends = (DjangoFilterBackend,)  # Бэкенд для обработки фильтра
+    filterset_fields = ("country",)  # Набор полей для фильтрации
