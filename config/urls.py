@@ -10,6 +10,7 @@ urlpatterns = [
     # namespace="users" - это заданное пространство имен, которое есть в users/urls.py с помощью UsersConfig.name
     path("api/", include("users.urls", namespace="users")),
     path("api/", include("products.urls", namespace="products")),
+    path("api/", include("network.urls", namespace="network")),
 ]
 
 if settings.DEBUG:

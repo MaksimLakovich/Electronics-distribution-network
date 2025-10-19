@@ -9,6 +9,7 @@ from users.permissions import IsActiveEmployee
 
 class ProductViewSet(viewsets.ViewSet):
     """ViewSet-класс для управления продуктами (создание, полное обновление, удаление)."""
+
     permission_classes = [IsActiveEmployee]
 
     def create(self, request):
