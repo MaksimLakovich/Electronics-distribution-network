@@ -40,9 +40,11 @@ class NetworkNodeAdmin(admin.ModelAdmin):
         )
 
     # ШАГ 3: Базовая настройка полей админки
-    list_display = ("id", "name", "country", "city", "product_link", "parent_link", "debt_to_supplier", "updated_at",)
+    list_display = (
+        "id", "name", "level", "country", "city", "product_link", "parent_link", "debt_to_supplier", "updated_at",
+    )
     list_filter = ("city",)
     search_fields = ("name", "city", "product__name",)
     ordering = ("name",)
-    readonly_fields = ("created_at", "updated_at")  # чтобы в админке их случайно не изменили
+    readonly_fields = ("level", "created_at", "updated_at")  # чтобы в админке их случайно не изменили
     actions = ["clear_debt"]  # Подключаю Admin action
