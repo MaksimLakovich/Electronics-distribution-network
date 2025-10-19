@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # Приложения проекта
     'users',
     'products',
+    'network',
 ]
 
 MIDDLEWARE = [
