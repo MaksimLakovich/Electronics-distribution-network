@@ -83,10 +83,12 @@
 │    ├── views.py                      # ProductViewSet(viewsets.ViewSet) с методами create(), partial_update() и destroy()
 │    └── urls.py                       # "product/", "product/<int:pk>/update/", "product/<int:pk>/delete/"
 ├── network/                    # Приложение проекта ("Торговая сеть")
-│    ├── admin.py
-│    ├── models.py
-│    ├── ...                           # 
-│    └── ...                           #
+│    ├── admin.py                      # NetworkNodeAdmin(admin.ModelAdmin)
+│    ├── models.py                     # NetworkNode(TimeStampedModel)
+│    ├── validators.py                 # NetworkLevelValidator
+│    ├── serializers.py                # NetworkNodeSerializer(serializers.ModelSerializer)
+│    ├── views.py                      # Полный CRUD с помощью NetworkNodeViewSet(viewsets.ModelViewSet)
+│    └── urls.py
 ├── .env.example
 ├── .flake8
 ├── .gitignore
@@ -122,25 +124,38 @@
 
 
 4. Торговая сеть (network):
-   - Иерархическая структура поставщиков и продавцов (в разработке).
+   - Иерархическая структура поставщиков и продавцов (три уровня: завод → розничная сеть → ИП)
+   - Каждое звено ссылается на одного родителя (поставщика).
+   - Автоматический расчет `level` и запрет создания звена с уровнем > 2.
+   - Админка:
+       - кликабельные ссылки на продукт и поставщика,
+       - фильтр по городу,
+       - admin action для обнуления задолженности.
+   - API (через DRF):
+       - полный CRUD (`network-node/`),
+       - фильтрация по стране (`country`),
+       - права доступа: только активные сотрудники.
 
 
 5. Про API-интерфейс (работа сотрудников онлайн-платформы *"Торговая сеть электроники"* через API с использованием Django REST Framework):
    - `API для авторизации сотрудников (users)`: используется ***JSON Web Token*** поэтому необходимо выполнить авторизацию и получить access-токен для работы с API:
    Эндпоинты:
      - http://base_url/api/token/
+
    - `API для работы с продуктами (products)`: управление базой ***Продуктов*** (создавать, редактировать, удалять).  
    Эндпоинты:
-     - http://base_url/api/product/ - создание продукта.
-     - http://base_url/api/product/prod_id/update/ - частичное обновление продукта.
-     - http://base_url/api/product/prod_id/delete/ - удаление продукта.
+     - http://base_url/api/product/ - создание продукта (POST).
+     - http://base_url/api/product/{pk}/update/ - частичное обновление продукта (PATCH).
+     - http://base_url/api/product/{pk}/delete/ - удаление продукта (DELETE).
 
-   - `API для работы с сетью (network)`: управление структурой ***Торговой сети*** (создавать, редактировать, просматривать, удалять).  
+   - `API для работы с сетью (network)`: управление структурой ***Торговой сети*** (полный CRUD).  
    Эндпоинты:
-     - http://base_url/api/network/.../
-     - http://base_url/api/network/.../
-     - http://base_url/api/network/.../
-     - http://base_url/api/network/.../
+     - http://base_url/api/network-node/ - просмотр списка всех звеньев (GET).
+     - http://base_url/api/network-node/ - создание звена торговой сети (POST).
+     - http://base_url/api/network-node/{pk}/ - просмотр одного звена (GET).
+     - http://base_url/api/network-node/{pk}/ - полное обновление звена (PUT).
+     - http://base_url/api/network-node/{pk}/ - частичное обновление звена (PATCH).
+     - http://base_url/api/network-node/{pk}/ - удаление звена (DELETE).
 
 
 6. Документация API (Swagger/ReDoc) будет доступна по адресу:
@@ -227,7 +242,7 @@
 - [Products (app_products_info.md)](docs/app_products_info.md): описание моделей, админки, валидатора, сериализатора, вьюх, путей.
 
 Приложение `network`:
-- [Network (app_network_info.md)](docs/app_network_info.md): описание моделей, админок, API, ...
+- [Network (app_network_info.md)](docs/app_network_info.md): описание моделей, админки, валидатора, сериализатора, вьюх, путей и логики расчета и соблюдения иерархической структуры из трех уровней.
 
 ---
 
@@ -239,13 +254,18 @@
 - [x] REST_FRAMEWORK настроен с JWTAuthentication.
 - [x] В "users/migrations/0002_create_employee_group.py" реализовано автоматическое создание группы "Employees" на всех контурах dev/prom.
 - [x] Реализован кастомный permission для проверки "Что только активные сотрудники имеют доступ к API".
-- [x] Приложение products (модели, админка, валидатор, сериализотор, вью, маршруты)
-- [ ] Приложение network (модели, админки, вью, маршруты)
-- [ ] Документация (оформить инструкцию по запуску сервиса и взаимодействию с проектом в README файле)
-- [ ] Подготовлены тесты на аутентификацию и permission(написание базовых тестов для проверки API)
+- [x] Приложение products (модели, админка, валидатор, сериализотор, вью, маршруты).
+- [x] Приложение network (модели, админка, валидатор, сериализотор, вью, маршруты).
+- [x] Реализована логика расчета и соблюдения иерархической структуры из трех уровней.
+- [x] Подключена API-документация.
+- [x] Оформлен README.md
+
 
 #### Будущие доработки (развитие системы):
-- [ ] CI/CD для продакшн-сервера
+- [ ] Подготовка тестов для веб-сервисов API (использование модуля unittest).
+- [ ] Настройка логирования.
+- [ ] Добавление кэширование вычисляемого поля level (использование Redis).
+- [ ] CI/CD для продакшн-сервера.
 
 ---
 
