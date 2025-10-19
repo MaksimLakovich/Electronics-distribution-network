@@ -9,6 +9,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # namespace="users" - это заданное пространство имен, которое есть в users/urls.py с помощью UsersConfig.name
     path("api/", include("users.urls", namespace="users")),
+    path("api/", include("products.urls", namespace="products")),
 ]
 
 if settings.DEBUG:
