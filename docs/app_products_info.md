@@ -62,7 +62,7 @@
 
 `ProductViewSet(viewsets.ViewSet)` реализует методы:
 - create() - создание продукта
-- update() - полное обновление
+- partial_update() - частичное обновление
 - destroy() - удаление продукта
 
 ---
