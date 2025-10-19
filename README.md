@@ -131,10 +131,10 @@
      - http://base_url/api/token/
    - `API для работы с продуктами (products)`: управление базой ***Продуктов*** (создавать, редактировать, удалять).  
    Эндпоинты:
-     - http://base_url/api/product/.../
-     - http://base_url/api/product/.../
-     - http://base_url/api/product/.../
-     - http://base_url/api/product/.../
+     - http://base_url/api/product/ - создание продукта.
+     - http://base_url/api/product/prod_id/update/ - частичное обновление продукта.
+     - http://base_url/api/product/prod_id/delete/ - удаление продукта.
+
    - `API для работы с сетью (network)`: управление структурой ***Торговой сети*** (создавать, редактировать, просматривать, удалять).  
    Эндпоинты:
      - http://base_url/api/network/.../
