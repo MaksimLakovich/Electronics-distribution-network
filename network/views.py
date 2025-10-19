@@ -1,5 +1,5 @@
-from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets
 
 from network.models import NetworkNode
 from network.serializers import NetworkNodeSerializer
