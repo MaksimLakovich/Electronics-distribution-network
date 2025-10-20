@@ -4,22 +4,9 @@ from django.db import models
 from products.models import Product, TimeStampedModel
 
 
-class NetworkNode(TimeStampedModel):
-    """Модель представляет звено торговой сети на платформе (наследуется от TimeStampedModel)."""
+class AddressNode(TimeStampedModel):
+    """Модель адреса для звеньев сети."""
 
-    name = models.CharField(
-        max_length=255,
-        blank=False,
-        null=False,
-        verbose_name="Название звена сети:",
-        help_text="Укажите название звена сети",
-    )
-    email = models.EmailField(
-        blank=True,
-        null=True,
-        verbose_name="Email:",
-        help_text="Укажите email контактного лица/офиса",
-    )
     country = models.CharField(
         max_length=100,
         blank=True,
@@ -47,6 +34,43 @@ class NetworkNode(TimeStampedModel):
         null=True,
         verbose_name="Дом:",
         help_text="Укажите номер дома",
+    )
+
+    def __str__(self):
+        """Метод определяет строковое представление объекта. Полезно для отображения объектов в админке/консоли."""
+        parts = [self.country, self.city, self.street, self.house_number]
+        return ", ".join(filter(None, parts)) or "Адрес не указан"
+
+    class Meta:
+        verbose_name = "Адрес"
+        verbose_name_plural = "Адреса"
+        ordering = ["country", "city", "street", "house_number"]
+
+
+class NetworkNode(TimeStampedModel):
+    """Модель представляет звено торговой сети на платформе (наследуется от TimeStampedModel)."""
+
+    name = models.CharField(
+        max_length=255,
+        blank=False,
+        null=False,
+        verbose_name="Название звена сети:",
+        help_text="Укажите название звена сети",
+    )
+    email = models.EmailField(
+        blank=True,
+        null=True,
+        verbose_name="Email:",
+        help_text="Укажите email контактного лица/офиса",
+    )
+    address = models.OneToOneField(
+        to=AddressNode,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name="network_node",
+        verbose_name="Адрес:",
+        help_text="Укажите адрес",
     )
     product = models.ForeignKey(
         to=Product,

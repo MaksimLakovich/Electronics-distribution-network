@@ -2,8 +2,17 @@ from rest_framework import serializers
 
 from products.serializers import ProductSerializer
 
-from .models import NetworkNode
+from .models import NetworkNode, AddressNode
 from .validators import NetworkLevelValidator
+
+
+class AddressNodeSerializer(serializers.ModelSerializer):
+    """Класс-сериализатор с использованием класса ModelSerializer для осуществления базовой сериализация в DRF на
+    основе модели AddressNode. Описывает, какие поля из AddressNode будут участвовать в сериализации/десериализации."""
+
+    class Meta:
+        model = AddressNode
+        fields = "__all__"
 
 
 class NetworkNodeSerializer(serializers.ModelSerializer):
@@ -17,6 +26,7 @@ class NetworkNodeSerializer(serializers.ModelSerializer):
         allow_null=True,
         validators=[NetworkLevelValidator()]
     )
+    address = AddressNodeSerializer(read_only=True)
 
     class Meta:
         model = NetworkNode
