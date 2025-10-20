@@ -1,9 +1,9 @@
 import os
 import sys
+from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
-
 
 # Загрузка переменных из .env-файла
 load_dotenv()
@@ -31,13 +31,18 @@ INSTALLED_APPS = [
 
     # DRF (Django REST framework) - это библиотека, которая работает со стандартными моделями Django для создания
     # API-сервера для проекта.
-    # 'rest_framework',
+    'rest_framework',
 
-    # Документация
-    # 'drf_yasg',
+    # Для использования расширенной фильтрации с помощью пакета django-filter, после его установки
+    'django_filters',
+
+    # API-документация
+    'drf_yasg',
 
     # Приложения проекта
-    # 'users',
+    'users',
+    'products',
+    'network',
 ]
 
 MIDDLEWARE = [
@@ -123,4 +128,21 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'users.AppUser'
+AUTH_USER_MODEL = 'users.AppUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ]
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=180),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
