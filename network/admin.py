@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
 
-from network.models import NetworkNode, AddressNode
+from network.models import AddressNode, NetworkNode
 
 
 @admin.register(AddressNode)

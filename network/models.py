@@ -63,12 +63,12 @@ class NetworkNode(TimeStampedModel):
         verbose_name="Email:",
         help_text="Укажите email контактного лица/офиса",
     )
-    address = models.OneToOneField(
+    address = models.ForeignKey(
         to=AddressNode,
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        related_name="network_node",
+        related_name="node",
         verbose_name="Адрес:",
         help_text="Укажите адрес",
     )

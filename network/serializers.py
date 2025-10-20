@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from products.serializers import ProductSerializer
 
-from .models import NetworkNode, AddressNode
+from .models import AddressNode, NetworkNode
 from .validators import NetworkLevelValidator
 
 
@@ -26,7 +26,14 @@ class NetworkNodeSerializer(serializers.ModelSerializer):
         allow_null=True,
         validators=[NetworkLevelValidator()]
     )
-    address = AddressNodeSerializer(read_only=True)
+    address = serializers.PrimaryKeyRelatedField(
+        queryset=AddressNode.objects.all(),
+        required=False,
+        allow_null=True,
+        write_only=True
+    )
+    # Чтобы при GET-запросе возвращался не только ID, а полная информация об адресе
+    address_info = AddressNodeSerializer(source="address", read_only=True)
 
     class Meta:
         model = NetworkNode
