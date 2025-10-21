@@ -69,7 +69,7 @@
 │    ├── models.py                     # AppUser(AbstractUser)
 │    ├── admin.py                      # AppUserAdmin(UserAdmin)
 │    ├── managers.py                   # create_user(), create_superuser()
-│    ├── constants.py                  # для хранения различных констант приложения
+│    ├── constants.py                  # для хранения различных констант приложения (EMPLOYEE_GROUP_NAME)
 │    ├── permissions.py                # IsActiveEmployee(BasePermission)
 │    ├── serializers.py                # AppUserTokenObtainPairSerializer(TokenObtainPairSerializer)
 │    ├── views.py                      # AppUserTokenObtainPairView(TokenObtainPairView)
@@ -84,6 +84,8 @@
 ├── network/                    # Приложение проекта ("Торговая сеть")
 │    ├── models.py                     # AddressNode(TimeStampedModel), NetworkNode(TimeStampedModel)
 │    ├── admin.py                      # AddressNodeAdmin(admin.ModelAdmin), NetworkNodeAdmin(admin.ModelAdmin)
+│    ├── constants.py                  # для хранения различных констант приложения (MAX_LEVEL)
+│    ├── services.py                   # для сервисных функций по проверке LEVEL и PARENT: calculate_level(), validate_level(), validate_no_cycles_in_level()
 │    ├── validators.py                 # NetworkLevelValidator
 │    ├── serializers.py                # AddressNodeSerializer(serializers.ModelSerializer), NetworkNodeSerializer(serializers.ModelSerializer)
 │    ├── filters.py                    # NetworkNodeFilter(django_filters.FilterSet)
@@ -265,7 +267,7 @@
 - [x] Приложение products (модели, админка, валидатор, сериализотор, вью, маршруты)
 - [x] Приложение network (модели, админка, валидатор, сериализотор, вью, маршруты)
 - [x] Реализован кастомный FilterSet (фильтр) для модели NetworkNode (фильтрация по "Стране")
-- [x] Реализована логика расчета и соблюдения иерархической структуры из трех уровней для звеньев сети
+- [x] "network/services.py" - реализована логика расчета, соблюдения иерархической структуры из трех уровней для звеньев сети и устранение циклических ловушек
 - [x] Подключена API-документация
 - [x] Оформлен README.md
 

@@ -31,8 +31,12 @@
 | `created_at`       | DateTimeField    | Автоматическое время создания                                                                                       |
 | `updated_at`       | DateTimeField    | Автоматическое время изменения                                                                                      |
 
-> ⚠️ Валидация (network/validators.py): `NetworkLevelValidator` не допускает создание звена с уровнем выше 2.  
-> В модели `save()` рассчитывает поле `level` автоматически на основе родителя.  
+> ⚠️ 
+> 1. Валидация (network/validators.py): `NetworkLevelValidator` не допускает создание звена с уровнем выше 2.  
+> 2. В модели метод `save()` рассчитывает: 
+>    - **validate_no_cycles_in_level()** - метод проверяет циклы для поля `level`.
+>    - **validate_level()** - метод проверяет level иерархии перед созданием объекта.
+>    - **calculate_level()** - метод рассчитывает и присваивает level.
 
 ---
 
