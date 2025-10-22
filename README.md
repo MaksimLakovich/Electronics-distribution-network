@@ -24,9 +24,10 @@
 [4. API и функционал](#title4)  
 [5. Переменные окружения](#title5)  
 [6. Быстрый старт](#title6)  
-[7. Документация](#title7)  
-[8. Roadmap](#title8)  
-[9. Автор](#title9)  
+[7. Фикстуры](#title7)  
+[8. Документация](#title8)  
+[9. Roadmap](#title9)  
+[10. Автор](#title10)  
 
 ---
 
@@ -52,7 +53,6 @@
 ## <a id="title2"> ⚙️ Технологии </a>
 - ***Backend***: Python, Django, Django REST Framework
 - ***База данных***: PostgreSQL
-- ***Кэширование***: Redis
 - ***Инфраструктура***: Docker, Docker Compose, CI/CD через GitHub Actions
 - ***Качество кода***: PEP8, pre-commit hooks (flake8, black, mypy), тесты
 
@@ -66,28 +66,35 @@
 ├── docs/                       # Дополнительная документация по деталям приложений и проекта в целом
 │    ├── app_users_info.md
 │    └── app_products_info.md
+├── fixtures
+│    ├── products_fixture.json
+│    ├── addresses_fixture.json
+│    └── network_fixture.json
 ├── users/                      # Приложение проекта ("Пользователи")
-│    ├── admin.py                      # AppUserAdmin(UserAdmin)
-│    ├── constants.py                  # для хранения различных констант приложения
-│    ├── managers.py                   # create_user(), create_superuser()
 │    ├── models.py                     # AppUser(AbstractUser)
+│    ├── admin.py                      # AppUserAdmin(UserAdmin)
+│    ├── managers.py                   # create_user(), create_superuser()
+│    ├── constants.py                  # для хранения различных констант приложения (EMPLOYEE_GROUP_NAME)
 │    ├── permissions.py                # IsActiveEmployee(BasePermission)
 │    ├── serializers.py                # AppUserTokenObtainPairSerializer(TokenObtainPairSerializer)
 │    ├── views.py                      # AppUserTokenObtainPairView(TokenObtainPairView)
 │    └── urls.py                       # "token/", "token/refresh/"
 ├── products/                   # Приложение проекта ("Продукты")
-│    ├── admin.py                      # ProductAdmin(admin.ModelAdmin)
 │    ├── models.py                     # TimeStampedModel(models.Model), Product(TimeStampedModel)
+│    ├── admin.py                      # ProductAdmin(admin.ModelAdmin)
 │    ├── validators.py                 # ReleaseDateValidator
 │    ├── serializers.py                # ProductSerializer(serializers.ModelSerializer)
 │    ├── views.py                      # ProductViewSet(viewsets.ViewSet) с методами create(), partial_update() и destroy()
 │    └── urls.py                       # "product/", "product/<int:pk>/update/", "product/<int:pk>/delete/"
 ├── network/                    # Приложение проекта ("Торговая сеть")
-│    ├── admin.py                      # NetworkNodeAdmin(admin.ModelAdmin)
-│    ├── models.py                     # NetworkNode(TimeStampedModel)
+│    ├── models.py                     # AddressNode(TimeStampedModel), NetworkNode(TimeStampedModel)
+│    ├── admin.py                      # AddressNodeAdmin(admin.ModelAdmin), NetworkNodeAdmin(admin.ModelAdmin)
+│    ├── constants.py                  # для хранения различных констант приложения (MAX_LEVEL)
+│    ├── services.py                   # для сервисных функций по проверке LEVEL и PARENT: calculate_level(), validate_level(), validate_no_cycles_in_level()
 │    ├── validators.py                 # NetworkLevelValidator
-│    ├── serializers.py                # NetworkNodeSerializer(serializers.ModelSerializer)
-│    ├── views.py                      # Полный CRUD с помощью NetworkNodeViewSet(viewsets.ModelViewSet)
+│    ├── serializers.py                # AddressNodeSerializer(serializers.ModelSerializer), NetworkNodeSerializer(serializers.ModelSerializer)
+│    ├── filters.py                    # NetworkNodeFilter(django_filters.FilterSet)
+│    ├── views.py                      # Полный CRUD для адресов и звеньев: NetworkNodeViewSet(viewsets.ModelViewSet), AddressNodeListCreateAPIView(generics.ListCreateAPIView) и AddressNodeRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
 │    └── urls.py
 ├── .env.example
 ├── .flake8
@@ -149,13 +156,22 @@
      - http://base_url/api/product/{pk}/delete/ - удаление продукта (DELETE).
 
    - `API для работы с сетью (network)`: управление структурой ***Торговой сети*** (полный CRUD).  
-   Эндпоинты:
+   Эндпоинты для звена сети:
      - http://base_url/api/network-node/ - просмотр списка всех звеньев (GET).
+     - http://base_url/api/network-node/?country=Japan - просмотр списка всех звеньев с фильтрацией по стране (GET).
      - http://base_url/api/network-node/ - создание звена торговой сети (POST).
      - http://base_url/api/network-node/{pk}/ - просмотр одного звена (GET).
      - http://base_url/api/network-node/{pk}/ - полное обновление звена (PUT).
      - http://base_url/api/network-node/{pk}/ - частичное обновление звена (PATCH).
      - http://base_url/api/network-node/{pk}/ - удаление звена (DELETE).
+   Эндпоинты для адресов звеньев сети:
+     - http://base_url/api/address/ - просмотр списка всех адресов (GET).
+     - http://base_url/api/address/?country=Россия&city=Москва&street=Мира - просмотр списка всех адресов с фильтрацией по 3 полям: страна, город, улица (GET).
+     - http://base_url/api/address/ - создание адреса (POST).
+     - http://base_url/api/address/{pk}/ - просмотр одного адреса (GET).
+     - http://base_url/api/address/{pk}/ - полное обновление адреса (PUT).
+     - http://base_url/api/address/{pk}/ - частичное обновление адреса (PATCH).
+     - http://base_url/api/address/{pk}/ - удаление адреса (DELETE).
 
 
 6. Документация API (Swagger/ReDoc) будет доступна по адресу:
@@ -231,7 +247,29 @@
 
 ---
 
-## <a id="title7"> 📖 Документация </a>
+## <a id="title7"> 📦 Тестовые данные (Fixtures) </a>
+
+1. Для удобства тестирования и демонстрации работы системы подготовлены реалистичные фикстуры:
+
+    | Модель        | Файл фикстуры                    | Кол-во записей | Описание                                                                |
+    | :------------ |:---------------------------------| :------------- |:------------------------------------------------------------------------|
+    | `Product`     | `fixtures/products_fixture.json` | 20             | Продукты: смартфоны, ноутбуки, наушники и т.д.                          |
+    | `AddressNode` | `fixtures/addresses_fixture.json`        | 29             | Реалистичные адреса заводов (США, Япония, Корея) и розничных звеньев/ИП |
+    | `NetworkNode` | `fixtures/network_fixture.json`          | 29             | Полноценная структура сети: 3 завода → 6 розничных сетей → 20 ИП.       |
+
+2. Загрузка фикстур:
+```
+python manage.py loaddata fixtures/products_fixture.json
+python manage.py loaddata fixtures/addresses_fixture.json
+python manage.py loaddata fixtures/network_fixture.json
+```
+
+> ⚠️ Примечание: порядок загрузки важен!
+Сначала products -> затем addresses -> затем network, потому что NetworkNode ссылается на продукты и адреса.
+
+---
+
+## <a id="title8"> 📖 Документация </a>
 
 Подробное описание алгоритмов, архитектуры и процесса запуска находится в папке `docs/`.  
 
@@ -242,22 +280,23 @@
 - [Products (app_products_info.md)](docs/app_products_info.md): описание моделей, админки, валидатора, сериализатора, вьюх, путей.
 
 Приложение `network`:
-- [Network (app_network_info.md)](docs/app_network_info.md): описание моделей, админки, валидатора, сериализатора, вьюх, путей и логики расчета и соблюдения иерархической структуры из трех уровней.
+- [Network (app_network_info.md)](docs/app_network_info.md): описание моделей, админки, валидатора, фильтрации, сериализатора, вьюх, путей, логики расчета и соблюдения иерархической структуры из трех уровней.
 
 ---
 
-## <a id="title8"> 🛣 Roadmap </a>
+## <a id="title9"> 🛣 Roadmap </a>
 
 #### MVP (minimum viable product):
-- [x] Приложение users (модели, админки, вью, маршруты)
-- [x] Для работы с API-интерфейсом реализованы JWT endpoints: /token/, /token/refresh/.
-- [x] REST_FRAMEWORK настроен с JWTAuthentication.
-- [x] В "users/migrations/0002_create_employee_group.py" реализовано автоматическое создание группы "Employees" на всех контурах dev/prom.
-- [x] Реализован кастомный permission для проверки "Что только активные сотрудники имеют доступ к API".
-- [x] Приложение products (модели, админка, валидатор, сериализотор, вью, маршруты).
-- [x] Приложение network (модели, админка, валидатор, сериализотор, вью, маршруты).
-- [x] Реализована логика расчета и соблюдения иерархической структуры из трех уровней.
-- [x] Подключена API-документация.
+- [x] Разработано приложение users (модели, админки, константы, сериализатор, вью, маршруты)
+- [x] Для работы с API-интерфейсом реализованы JWT endpoints: /token/, /token/refresh/
+- [x] В "users/migrations/0002_create_employee_group.py" реализовано автоматическое создание группы "Employees" на всех контурах (dev/prom)
+- [x] Реализован кастомный класс-permission IsActiveEmployee(), который проверяет, что пользователь является действующим сотрудником (доступ к API)
+- [x] Приложение products (модели, админка, валидатор, сериализотор, вью, маршруты)
+- [x] Приложение network (модели, админка, валидатор, сериализотор, вью, маршруты)
+- [x] Реализован кастомный FilterSet (фильтр) для модели NetworkNode (фильтрация по "Стране")
+- [x] "network/services.py" - реализована логика расчета, соблюдения иерархической структуры из трех уровней для звеньев сети и устранение циклических ловушек
+- [x] Подключена API-документация
+- [x] Созданы фикстуры (address, product, network) для наполнения БД данными
 - [x] Оформлен README.md
 
 
@@ -269,7 +308,7 @@
 
 ---
 
-## <a id="title9"> 👨‍💻 Автор </a>
+## <a id="title10"> 👨‍💻 Автор </a>
  
 **Автор**: Максим Лакович  
 GitHub: [MaksimLakovich](https://github.com/MaksimLakovich)  

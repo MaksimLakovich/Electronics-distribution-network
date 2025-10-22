@@ -1,0 +1,110 @@
+[
+  {
+    "model": "network.addressnode",
+    "pk": 1,
+    "fields": {
+      "country": "China",
+      "city": "Guangzhou",
+      "street": "1 Tech Way",
+      "house_number": "100",
+      "created_at": "2025-10-21 12:00:00",
+      "updated_at": "2025-10-21 12:00:00"
+    }
+  },
+  {
+    "model": "network.addressnode",
+    "pk": 2,
+    "fields": {
+      "country": "South Korea",
+      "city": "Seoul",
+      "street": "Digital-ro",
+      "house_number": "88",
+      "created_at": "2025-10-21 12:00:00",
+      "updated_at": "2025-10-21 12:00:00"
+    }
+  },
+  {
+    "model": "network.addressnode",
+    "pk": 3,
+    "fields": {
+      "country": "Japan",
+      "city": "Tokyo",
+      "street": "Shinagawa",
+      "house_number": "5",
+      "created_at": "2025-10-21 12:00:00",
+      "updated_at": "2025-10-21 12:00:00"
+    }
+  },
+  {
+    "model": "network.addressnode",
+    "pk": 4,
+    "fields": {
+      "country": "Russia",
+      "city": "Moscow",
+      "street": "Tverskaya",
+      "house_number": "10",
+      "created_at": "2025-10-21 12:00:00",
+      "updated_at": "2025-10-21 12:00:00"
+    }
+  },
+  {
+    "model": "network.addressnode",
+    "pk": 5,
+    "fields": {
+      "country": "Russia",
+      "city": "Moscow",
+      "street": "Leningradskaya",
+      "house_number": "12",
+      "created_at": "2025-10-21 12:00:00",
+      "updated_at": "2025-10-21 12:00:00"
+    }
+  },
+  {
+    "model": "network.addressnode",
+    "pk": 6,
+    "fields": {
+      "country": "Russia",
+      "city": "Saint Petersburg",
+      "street": "Nevsky Prospekt",
+      "house_number": "42",
+      "created_at": "2025-10-21 12:00:00",
+      "updated_at": "2025-10-21 12:00:00"
+    }
+  },
+  {
+    "model": "network.addressnode",
+    "pk": 7,
+    "fields": {
+      "country": "Russia",
+      "city": "Saint Petersburg",
+      "street": "Ligovsky Prospekt",
+      "house_number": "7",
+      "created_at": "2025-10-21 12:00:00",
+      "updated_at": "2025-10-21 12:00:00"
+    }
+  },
+  {
+    "model": "network.addressnode",
+    "pk": 8,
+    "fields": {
+      "country": "Russia",
+      "city": "Moscow",
+      "street": "Arbat",
+      "house_number": "21",
+      "created_at": "2025-10-21 12:00:00",
+      "updated_at": "2025-10-21 12:00:00"
+    }
+  },
+  {
+    "model": "network.addressnode",
+    "pk": 9,
+    "fields": {
+      "country": "Russia",
+      "city": "Moscow",
+      "street": "Prospekt Mira",
+      "house_number": "15",
+      "created_at": "2025-10-21 12:00:00",
+      "updated_at": "2025-10-21 12:00:00"
+    }
+  }
+]
