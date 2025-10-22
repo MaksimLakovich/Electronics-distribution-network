@@ -10,6 +10,7 @@ class AddressNodeAdmin(admin.ModelAdmin):
     """Настройка отображения модели AddressNode в админке."""
 
     list_display = ("id", "country", "city", "street", "house_number", "updated_at")
+    list_filter = ("country",)
     search_fields = ("country", "city", "street")
     ordering = ("country", "city")
     readonly_fields = ("created_at", "updated_at")  # чтобы в админке их случайно не изменили
@@ -65,6 +66,6 @@ class NetworkNodeAdmin(admin.ModelAdmin):
     )
     list_filter = ("address__city",)
     search_fields = ("name", "address__city", "product__name",)
-    ordering = ("name",)
+    ordering = ("level",)
     readonly_fields = ("level", "created_at", "updated_at")  # чтобы в админке их случайно не изменили
     actions = ["clear_debt"]  # Подключаю Admin action

@@ -1,0 +1,440 @@
+[
+  {
+    "model": "network.networknode",
+    "pk": 1,
+    "fields": {
+      "name": "Xiaomi Factory",
+      "level": 0,
+      "product": null,
+      "parent": null,
+      "address": 1,
+      "email": "factory@xiaomi.cn",
+      "debt_to_supplier": "0.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 2,
+    "fields": {
+      "name": "Samsung Electronics Plant",
+      "level": 0,
+      "product": null,
+      "parent": null,
+      "address": 2,
+      "email": "factory@samsung.kr",
+      "debt_to_supplier": "0.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 3,
+    "fields": {
+      "name": "Sony Manufacturing",
+      "level": 0,
+      "product": null,
+      "parent": null,
+      "address": 3,
+      "email": "factory@sony.jp",
+      "debt_to_supplier": "0.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+
+  {
+    "model": "network.networknode",
+    "pk": 4,
+    "fields": {
+      "name": "DNS Retail Moscow",
+      "level": 1,
+      "product": null,
+      "parent": 1,
+      "address": 4,
+      "email": "info@dns-shop.ru",
+      "debt_to_supplier": "4800000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 5,
+    "fields": {
+      "name": "M.Video Retail",
+      "level": 1,
+      "product": null,
+      "parent": 2,
+      "address": 5,
+      "email": "sales@mvideo.ru",
+      "debt_to_supplier": "6200000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 6,
+    "fields": {
+      "name": "Eldorado Retail",
+      "level": 1,
+      "product": null,
+      "parent": 3,
+      "address": 6,
+      "email": "shop@eldorado.ru",
+      "debt_to_supplier": "5100000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 7,
+    "fields": {
+      "name": "Citilink Moscow",
+      "level": 1,
+      "product": null,
+      "parent": 1,
+      "address": 7,
+      "email": "info@citilink.ru",
+      "debt_to_supplier": "7300000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 8,
+    "fields": {
+      "name": "Ozon Electronics",
+      "level": 1,
+      "product": null,
+      "parent": 2,
+      "address": 8,
+      "email": "partner@ozon.ru",
+      "debt_to_supplier": "5800000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 9,
+    "fields": {
+      "name": "Wildberries Tech",
+      "level": 1,
+      "product": null,
+      "parent": 3,
+      "address": 9,
+      "email": "partners@wildberries.ru",
+      "debt_to_supplier": "6700000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+
+  {
+    "model": "network.networknode",
+    "pk": 10,
+    "fields": {
+      "name": "ИП Иванов Алексей",
+      "level": 2,
+      "product": 1,
+      "parent": 4,
+      "address": 4,
+      "email": "ivanov@mail.ru",
+      "debt_to_supplier": "45000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 11,
+    "fields": {
+      "name": "ИП Смирнов Петр",
+      "level": 2,
+      "product": 2,
+      "parent": 5,
+      "address": 5,
+      "email": "smirnovp@gmail.com",
+      "debt_to_supplier": "38000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 12,
+    "fields": {
+      "name": "ИП Сидорова Марина",
+      "level": 2,
+      "product": 3,
+      "parent": 6,
+      "address": 6,
+      "email": "sidorova.m@yandex.ru",
+      "debt_to_supplier": "62000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 13,
+    "fields": {
+      "name": "ИП Кузнецов Роман",
+      "level": 2,
+      "product": 4,
+      "parent": 7,
+      "address": 8,
+      "email": "kuznetsov.roman@gmail.com",
+      "debt_to_supplier": "57000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 14,
+    "fields": {
+      "name": "ИП Фролова Анна",
+      "level": 2,
+      "product": 5,
+      "parent": 8,
+      "address": 9,
+      "email": "frolova.a@mail.ru",
+      "debt_to_supplier": "43000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 15,
+    "fields": {
+      "name": "ИП Белова Дарья",
+      "level": 2,
+      "product": 6,
+      "parent": 9,
+      "address": null,
+      "email": "belova.d@gmail.com",
+      "debt_to_supplier": "52000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+
+  {
+    "model": "network.networknode",
+    "pk": 16,
+    "fields": {
+      "name": "ИП Васильев Николай",
+      "level": 2,
+      "product": 7,
+      "parent": 4,
+      "address": 6,
+      "email": "vasilev.n@mail.ru",
+      "debt_to_supplier": "31000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 17,
+    "fields": {
+      "name": "ИП Петрова Светлана",
+      "level": 2,
+      "product": 8,
+      "parent": 5,
+      "address": 4,
+      "email": "petrova.s@gmail.com",
+      "debt_to_supplier": "28000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 18,
+    "fields": {
+      "name": "ИП Орлов Дмитрий",
+      "level": 2,
+      "product": 9,
+      "parent": 6,
+      "address": 7,
+      "email": "orlov.d@gmail.com",
+      "debt_to_supplier": "34000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 19,
+    "fields": {
+      "name": "ИП Киселев Андрей",
+      "level": 2,
+      "product": 10,
+      "parent": 7,
+      "address": 8,
+      "email": "kiselev.a@mail.ru",
+      "debt_to_supplier": "45000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 20,
+    "fields": {
+      "name": "ИП Николаева Ирина",
+      "level": 2,
+      "product": 11,
+      "parent": 8,
+      "address": null,
+      "email": "nikolaeva.i@yandex.ru",
+      "debt_to_supplier": "56000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 21,
+    "fields": {
+      "name": "ИП Егоров Павел",
+      "level": 2,
+      "product": 12,
+      "parent": 9,
+      "address": 7,
+      "email": "egorov.p@gmail.com",
+      "debt_to_supplier": "39000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 22,
+    "fields": {
+      "name": "ИП Захарова Лидия",
+      "level": 2,
+      "product": 13,
+      "parent": 4,
+      "address": null,
+      "email": "zakharova.l@gmail.com",
+      "debt_to_supplier": "25000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 23,
+    "fields": {
+      "name": "ИП Мельников Григорий",
+      "level": 2,
+      "product": 14,
+      "parent": 5,
+      "address": 9,
+      "email": "melnikov.g@gmail.com",
+      "debt_to_supplier": "47000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 24,
+    "fields": {
+      "name": "ИП Чернова Валентина",
+      "level": 2,
+      "product": 15,
+      "parent": 6,
+      "address": 7,
+      "email": "chernova.v@yandex.ru",
+      "debt_to_supplier": "32000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 25,
+    "fields": {
+      "name": "ИП Федоров Артем",
+      "level": 2,
+      "product": 16,
+      "parent": 7,
+      "address": null,
+      "email": "fedorov.a@mail.ru",
+      "debt_to_supplier": "41000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 26,
+    "fields": {
+      "name": "ИП Денисов Кирилл",
+      "level": 2,
+      "product": 17,
+      "parent": 8,
+      "address": 9,
+      "email": "denisov.k@gmail.com",
+      "debt_to_supplier": "46000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 27,
+    "fields": {
+      "name": "ИП Тарасова Елена",
+      "level": 2,
+      "product": 18,
+      "parent": 9,
+      "address": 5,
+      "email": "tarasova.e@mail.ru",
+      "debt_to_supplier": "29000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 28,
+    "fields": {
+      "name": "ИП Громов Виталий",
+      "level": 2,
+      "product": 19,
+      "parent": 7,
+      "address": 4,
+      "email": "gromov.v@gmail.com",
+      "debt_to_supplier": "37000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  },
+  {
+    "model": "network.networknode",
+    "pk": 29,
+    "fields": {
+      "name": "ИП Романова Наталья",
+      "level": 2,
+      "product": 20,
+      "parent": 10,
+      "address": null,
+      "email": "romanova.n@gmail.com",
+      "debt_to_supplier": "18000.00",
+      "created_at": "2025-10-21T12:00:00",
+      "updated_at": "2025-10-21T12:00:00"
+    }
+  }
+]
