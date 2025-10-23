@@ -112,7 +112,7 @@ jobs:
             # 3) Можно указать другую ветку например "feature/task_2" если нужно деплоить раньше на develop или feature, но для прода должно быть "main"
             # git pull origin feature/task_2
             git fetch origin main
-            git reset --hard main
+            git reset --hard origin/main
             
   
             # Подтягиваем все новые образы (web, nginx и т.д.)
